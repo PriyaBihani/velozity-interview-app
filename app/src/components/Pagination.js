@@ -42,7 +42,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 							? 'bg-blue-500 text-white'
 							: 'bg-gray-200 text-gray-700'
 					}`}
-					onClick={() => onPageChange(pageNumber)}>
+					onClick={() => {
+						if (pageNumber !== ellipsis) {
+							onPageChange(pageNumber);
+						}
+					}}>
 					{pageNumber}
 				</button>
 			))}
