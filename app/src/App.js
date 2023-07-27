@@ -14,7 +14,10 @@ function App() {
 			<nav className='bg-slate-600'>
 				<div className='flex flex-wrap items-center justify-between p-4'>
 					<h1 className='text-white font-bold text-3xl'>Movie Search App</h1>
-					<SearchBar currentPage={currentPage} />
+					<SearchBar
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
+					/>
 				</div>
 			</nav>
 			<Loader />

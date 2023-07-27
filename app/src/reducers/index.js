@@ -9,7 +9,9 @@ const initialState = {
 	movieSearch: {
 		results: [],
 	},
-	favorites: JSON.parse(Cookies.get('favorites')) || [],
+	favorites: Cookies.get('favorites')
+		? JSON.parse(Cookies.get('favorites'))
+		: [],
 };
 
 const moviesReducer = (state = initialState, action) => {

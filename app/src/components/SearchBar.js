@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../actions/movies';
 
-const SearchBar = ({ currentPage }) => {
+const SearchBar = ({ currentPage, setCurrentPage }) => {
 	const dispatch = useDispatch();
 	const [query, setQuery] = useState('');
+
+	const handleChange = (e) => {
+		setQuery(e.target.value);
+		setCurrentPage(1);
+	};
 
 	useEffect(() => {
 		const search = setTimeout(() => {
@@ -21,7 +26,7 @@ const SearchBar = ({ currentPage }) => {
 				type='search'
 				name='search'
 				value={query}
-				onChange={(e) => setQuery(e.target.value)}
+				onChange={handleChange}
 				placeholder='Search for a movie...'
 			/>
 		</div>

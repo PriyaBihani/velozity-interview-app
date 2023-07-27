@@ -15,9 +15,10 @@ export const searchMovies =
 				type: SEARCH_MOVIES,
 				payload: res,
 			});
-			setLoader(false, dispatch);
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setLoader(false, dispatch);
 		}
 	};
 

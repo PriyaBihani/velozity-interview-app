@@ -4,8 +4,6 @@ const router = Router();
 
 router.get('/search', async (req, res) => {
 	const { query, page } = req.query;
-	console.log('HEY');
-	console.log(req.query, req.cookies);
 	try {
 		const response = await axios.get(
 			`http://www.omdbapi.com/?apikey=${
