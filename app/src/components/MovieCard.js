@@ -22,7 +22,9 @@ const MovieCard = ({ movie }) => {
 					</div>
 					<div className='flex flex-col w-1/2 space-y-4'>
 						<div className='flex justify-between items-start'>
-							<h2 className='text-3xl font-bold'>{movie.Title}</h2>
+							<h2 className='text-3xl font-bold'>
+								{movie.Title?.substring(0, 30)}
+							</h2>
 							<div className='bg-yellow-400 font-bold rounded-xl p-2'>7.2</div>
 						</div>
 						<div>

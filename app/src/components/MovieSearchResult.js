@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import MovieCard from './MovieCard';
-const MovieSearchResults = ({ query }) => {
+import Pagination from './Pagination';
+
+const MovieSearchResults = ({ currentPage, onPageChange }) => {
 	const movies = useSelector((state) => state.movieSearch.results);
 	const isLoading = useSelector((state) => state.isLoading);
 	return (
@@ -15,13 +17,16 @@ const MovieSearchResults = ({ query }) => {
 							<MovieCard key={movie.imdbID} movie={movie} />
 						))}
 					</div>
+					<Pagination
+						currentPage={currentPage}
+						totalPages={100}
+						onPageChange={onPageChange}
+					/>
 				</>
 			) : (
 				!isLoading && (
 					<div className='h-96 flex justify-center items-center'>
-						{query === ''
-							? 'Search for movies'
-							: `Movies not available with '${query}'`}
+						Search for movies
 					</div>
 				)
 			)}

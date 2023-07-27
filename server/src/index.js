@@ -1,12 +1,21 @@
+import dotenv from 'dotenv';
+dotenv.config('../.env');
+
 import express from 'express';
 import cors from 'cors';
-import cookieparser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import movieRoutes from './routes/movies';
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+	origin: process.env.ORIGIN,
+	optionsSuccessStatus: 200,
+	credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(express.json());
-app.use(cookieparser());
 app.use('/api/movies', movieRoutes);
 
 const PORT = process.env.PORT || 8000;

@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../actions/movies';
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ currentPage }) => {
 	const dispatch = useDispatch();
+	const [query, setQuery] = useState('');
 
 	useEffect(() => {
 		const search = setTimeout(() => {
-			dispatch(searchMovies(query));
+			dispatch(searchMovies(query, currentPage));
 		}, 1000);
 
 		return () => clearTimeout(search);
-	}, [query]);
+	}, [query, currentPage]);
 
 	return (
 		<div className='pt-2 relative text-gray-600 min-w-[40%]'>

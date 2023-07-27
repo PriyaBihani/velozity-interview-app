@@ -1,10 +1,15 @@
-import { SEARCH_MOVIES, SET_LOADING, TOGGLE_FAVORITES } from '../constants';
+import Cookies from 'js-cookie';
+import {
+	SEARCH_MOVIES,
+	SET_LOADING,
+	TOGGLE_FAVORITES,
+} from '../utils/constants';
 const initialState = {
 	isLoading: false,
 	movieSearch: {
 		results: [],
 	},
-	favorites: [],
+	favorites: JSON.parse(Cookies.get('favorites')) || [],
 };
 
 const moviesReducer = (state = initialState, action) => {

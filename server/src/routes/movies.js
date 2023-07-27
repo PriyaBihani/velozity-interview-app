@@ -3,11 +3,14 @@ import axios from 'axios';
 const router = Router();
 
 router.get('/search', async (req, res) => {
-	const { q } = req.query;
-	console.log(req.query);
+	const { query, page } = req.query;
+	console.log('HEY');
+	console.log(req.query, req.cookies);
 	try {
 		const response = await axios.get(
-			`http://www.omdbapi.com/?apikey=f80e8230&s=${encodeURIComponent(q)}`
+			`http://www.omdbapi.com/?apikey=${
+				process.env.API_KEY
+			}&s=${encodeURIComponent(query)}&page=${page}`
 		);
 		const movies = response.data.Search || [];
 		res.status(200).json(movies);
@@ -20,7 +23,7 @@ router.get('/search', async (req, res) => {
 let favorites = [];
 
 router.post('/favorites', (req, res) => {
-	const movie = req.body;
+	const { movie } = req.body;
 
 	if (!favorites.find((favMovie) => favMovie.imdbID === movie.imdbID)) {
 		favorites.push(movie);
@@ -29,9 +32,8 @@ router.post('/favorites', (req, res) => {
 			(favMovie) => favMovie.imdbID !== movie.imdbID
 		);
 	}
-
-	res.cookie('favorites', favorites, { httpOnly: true });
-	res.json({ message: 'Favorites updated successfully' });
+	res.cookie('favorites', JSON.stringify(favorites));
+	res.status(200).json({ message: 'Favorites updated successfully' });
 });
 
 router.get('/favorites', (req, res) => {
