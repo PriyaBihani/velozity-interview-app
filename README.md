@@ -22,6 +22,7 @@ To run the app, you'll need to create two `.env` file one in the app folder othe
 `
 REACT_APP_BASE_URL=http://localhost:8000/api/movies/
 `
+
 2. server/.env includes:
 
    `
