@@ -25,7 +25,8 @@ REACT_APP_BASE_URL=http://localhost:8000/api/movies/
 
 2. server/.env includes:
 
-   `
+   ```
    API_KEY=
+   
    ORIGIN=http://localhost:3000
-   `
+   ```
